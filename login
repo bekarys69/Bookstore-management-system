@@ -5,7 +5,7 @@ public static void login() {
     l1=new JLabel("Username");  //cоздание метки Username
     l1.setBounds(30,15, 100,30); //ось x, ось y, ширина, высота 
      
-    l2=new JLabel("Password");  //cоздание меткиl Password
+    l2=new JLabel("Password");  //cоздание метки Password
     l2.setBounds(30,50, 100,30);    
      
     JTextField F_user = new JTextField(); //создание текстового поля для пользователя
@@ -17,3 +17,8 @@ public static void login() {
     JButton login_but=new JButton("Login");//создание экземпляра JButton для Login Button
     login_but.setBounds(130,90,80,25);//размеры кнопки
     login_but.addActionListener(new ActionListener() {
+    
+     public void actionPerformed(ActionEvent e){ 
+ 
+        String username = F_user.getText(); //сохранение пользователя в переменной "username"
+        String password = F_pass.getText(); //сохранение пароля в переменной "password"

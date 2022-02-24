@@ -27,12 +27,12 @@ public static void admin_menu() {
                  stmt.executeUpdate("use library"); //использование БД
                 stmt=connection.createStatement();
                 ResultSet rs=stmt.executeQuery(sql);
-                JTable book_list= new JTable(); 
+                JTable book_list= new JTable(); //просмотр данных в табличном формате
                 book_list.setModel(DbUtils.resultSetToTableModel(rs));
-                JScrollPane scrollPane = new JScrollPane(book_list); 
+                JScrollPane scrollPane = new JScrollPane(book_list); //упомянуть полосу прокрутки
  
-                f.add(scrollPane);
-                f.setSize(800, 400);
+                f.add(scrollPane); //добавить полосу прокрутки
+                f.setSize(800, 400); //установить размер рамки
                 f.setVisible(true);
                 f.setLocationRelativeTo(null);
             } catch (SQLException e1) {
@@ -53,7 +53,7 @@ public static void admin_menu() {
                 String sql="select * from users"; 
                 try {
                     Statement stmt = connection.createStatement();
-                     stmt.executeUpdate("USE LIBRARY"); 
+                     stmt.executeUpdate("use libraryY"); 
                     stmt=connection.createStatement();
                     ResultSet rs=stmt.executeQuery(sql);
                     JTable book_list= new JTable();

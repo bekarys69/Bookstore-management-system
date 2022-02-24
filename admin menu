@@ -1,12 +1,12 @@
 public static void admin_menu() {
      
-    JFrame f=new JFrame("Admin Functions"); 
-    JButton create_but=new JButton("Create/Reset");
-    create_but.setBounds(450,60,120,25);
+    JFrame f=new JFrame("Admin Functions"); //присваивание диалогового окна функциям администратора
+    JButton create_but=new JButton("Create/Reset"); //создание экземпляра JButton
+    create_but.setBounds(450,60,120,25); //ось x, ось y, ширина, высота
     create_but.addActionListener(new ActionListener() { 
         public void actionPerformed(ActionEvent e){
              
-            create(); 
+            create(); //вызов функции create
             JOptionPane.showMessageDialog(null,"Database Created/Reset!");
              
         }

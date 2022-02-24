@@ -31,22 +31,22 @@ public static void user_menu(String UID) {
     }
     );
     
-    JButton my_book=new JButton("My Books");
-    my_book.setBounds(150,20,120,25);
+    JButton my_book=new JButton("My Books"); //создание экземпляра JButton
+    my_book.setBounds(150,20,120,25); //ось x, ось y, ширина, высота
     my_book.addActionListener(new ActionListener() { 
         public void actionPerformed(ActionEvent e){
              
                
-            JFrame f = new JFrame("My Books"); 
-            int UID_int = Integer.parseInt(UID); 
+            JFrame f = new JFrame("My Books"); //просмотр книг выпущенных пользователем
+            int UID_int = Integer.parseInt(UID); //ID пропуск пользователя
             Connection connection = connect(); 
             String sql="select distinct issued.*,books.bname,books.genre,books.price from issued,books " + "where ((issued.uid=" + UID_int + ") and (books.bid in (select bid from issued where issued.uid="+UID_int+"))) group by iid";
             String sql1 = "select bid from issued where uid="+UID_int;
             try {
-                Statement stmt = connection.createStatement();
+                Statement stmt = connection.createStatement(); //подключение к БД
                  stmt.executeUpdate("use library");
-                stmt=connection.createStatement();
-                ArrayList books_list = new ArrayList();
+                stmt=connection.createStatement(); //использование БД
+                ArrayList books_list = new ArrayList(); //хранение в массиве
                 ResultSet rs=stmt.executeQuery(sql);
                 JTable book_list= new JTable(); 
                 book_list.setModel(DbUtils.resultSetToTableModel(rs));

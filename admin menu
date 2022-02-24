@@ -335,3 +335,64 @@ JButton add_book=new JButton("Add Book");
     }
     });
      
+    JButton return_book=new JButton("Return Book"); 
+    return_book.setBounds(280,60,160,25); 
+     
+    return_book.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e){
+                 
+                JFrame g = new JFrame("Enter Details");
+                JLabel l1,l2,l3,l4; 
+                l1=new JLabel("Issue ID(IID)");  
+                l1.setBounds(30,15, 100,30); 
+                
+                 
+                l4=new JLabel("Return Date(DD-MM-YYYY)");  
+                l4.setBounds(30,50, 150,30); 
+                 
+                JTextField F_iid = new JTextField();
+                F_iid.setBounds(110, 15, 200, 30);
+                 
+                 
+                JTextField F_return=new JTextField();
+                F_return.setBounds(180, 50, 130, 30);
+             
+ 
+                JButton create_but=new JButton("Return");
+                create_but.setBounds(130,170,80,25);
+                create_but.addActionListener(new ActionListener() {
+                     
+                    public void actionPerformed(ActionEvent e){                 
+                     
+                    String iid = F_iid.getText();
+                    String return_date = F_return.getText();
+                     
+                    Connection connection = connect();
+                     
+                    try {
+                    Statement stmt = connection.createStatement();
+                     stmt.executeUpdate("use library");
+                     String date1=null; 
+                     String date2=return_date;
+                     
+                     //select issue date
+                     ResultSet rs = stmt.executeQuery("select issued_date from issued where iid="+iid);
+                     while (rs.next()) {
+                         date1 = rs.getString(1);
+                          
+                       }
+                      
+                     try {
+                            Date date_1=new SimpleDateFormat("dd-MM-yyyy").parse(date1);
+                            Date date_2=new SimpleDateFormat("dd-MM-yyyy").parse(date2);
+                            long diff = date_2.getTime() - date_1.getTime(); 
+                            ex.days=(int)(TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)); 
+                             
+                             
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
+                      
+                     
+                     stmt.executeUpdate("update issued set return_date='"+return_date+"' where iid="+iid); 
+                     g.dispose();

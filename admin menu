@@ -7,24 +7,24 @@ public static void admin_menu() {
         public void actionPerformed(ActionEvent e){
              
             create(); //вызов функции create
-            JOptionPane.showMessageDialog(null,"Database Created/Reset!");
+            JOptionPane.showMessageDialog(null,"Database Created/Reset!"); //открытие окна и отображение сообщения
              
         }
     });
      
      
-    JButton view_but=new JButton("View Books");
-    view_but.setBounds(20,20,120,25);
+    JButton view_but=new JButton("View Books"); //создание экземпляра кнопки для просмотра книг
+    view_but.setBounds(20,20,120,25); //ось x, ось y, ширина, высота
     view_but.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e){
                        JFrame f = new JFrame("Books Available"); 
            
               
-            Connection connection = connect(); 
-            String sql="select * from BOOKS"; 
+            Connection connection = connect(); //подключение к БД
+            String sql="select * from BOOKS"; //выбирает все книги
             try {
                 Statement stmt = connection.createStatement();
-                 stmt.executeUpdate("USE LIBRARY");
+                 stmt.executeUpdate("use library"); //использование БД
                 stmt=connection.createStatement();
                 ResultSet rs=stmt.executeQuery(sql);
                 JTable book_list= new JTable(); 

@@ -23,13 +23,13 @@ public static void login() {
         String username = F_user.getText(); //сохранение пользователя в переменной "username"
         String password = F_pass.getText(); //сохранение пароля в переменной "password"
 
- if(username.equals("")) 
+ if(username.equals("")) //если имя пользователя null
         {
-            JOptionPane.showMessageDialog(null,"Please enter username");
+            JOptionPane.showMessageDialog(null,"Please enter username"); //отображение окна с сообщением
         } 
-        else if(password.equals("")) 
+        else if(password.equals("")) //если пароль null
         {
-            JOptionPane.showMessageDialog(null,"Please enter password"); 
+            JOptionPane.showMessageDialog(null,"Please enter password"); //отображение окна с сообщением
         }
         else { //если оба поля заполнены, то для входа в систему идёт проверка пользователя
             //System.out.println("Login connect");
@@ -37,27 +37,27 @@ public static void login() {
             try
             {
             Statement stmt = connection.createStatement();
-              stmt.executeUpdate("use library"); 
-              String st = ("select * from users where username='"+username+"' and password='"+password+"'"); 
-              ResultSet rs = stmt.executeQuery(st); 
-              if(rs.next()==false) {
-                  System.out.print("No user");  
+              stmt.executeUpdate("use library"); //использование БД "library"
+              String st = ("select * from users where username='"+username+"' and password='"+password+"'"); //получение имени пользователя и паролей
+              ResultSet rs = stmt.executeQuery(st); //выполнение запроса
+              if(rs.next()==false) { //перемещение указателя вниз
+                  System.out.print("No user"); //отобразить сообщение
                   JOptionPane.showMessageDialog(null,"Wrong Username/Password!"); 
  
               }
               else {
                   f.dispose();
-                rs.beforeFirst(); 
+                rs.beforeFirst(); //перемещение указателя вверх
                 while(rs.next())
                 {
-                  String admin = rs.getString("admin"); 
+                  String admin = rs.getString("admin"); //пользователь теперь админ
                   //System.out.println(admin);
-                  String UID = rs.getString("uid"); 
-                  if(admin.equals("1")) {
-                      admin_menu(); 
+                  String UID = rs.getString("uid"); //получение ID пользователя
+                  if(admin.equals("1")) { //если значение 1
+                      admin_menu(); //перенаправление в меню админа
                   }
                   else{
-                      user_menu(UID);
+                      user_menu(UID); //перенаправление в меню пользователя
                   }
               }
               }

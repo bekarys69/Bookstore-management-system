@@ -70,15 +70,15 @@ public static void login() {
     });
  
      
-    f.add(F_pass); 
-    f.add(login_but);
-    f.add(F_user); 
-    f.add(l1); 
-    f.add(l2); 
+    f.add(F_pass); //добавление пароля
+    f.add(login_but); //добавление кнопки в JFrame
+    f.add(F_user); //добавление пользователя
+    f.add(l1); //добавление метки1 для имени пользователя
+    f.add(l2); //добавление метки2 для имени пароля
      
-    f.setSize(400,180);
-    f.setLayout(null);
-    f.setVisible(true);
+    f.setSize(400,180); //400 ширина и 100 высота
+    f.setLayout(null); //использование no layout
+    f.setVisible(true); //делает рамку видимой
     f.setLocationRelativeTo(null);
      
 }

@@ -1,15 +1,16 @@
 public static void create() {
     try {
     Connection connection=connect();
-    ResultSet resultSet = connection.getMetaData().getCatalogs(); 
-        while (resultSet.next()) {
+    ResultSet resultSet = connection.getMetaData().getCatalogs(); //повторяет каждый каталог в ResultSet
+        while (resultSet.next()) { //получает имя БД, которое находится в позиции 1
           String databaseName = resultSet.getString(1);
-          if(databaseName.equals("library")) {
-              Statement stmt = connection.createStatement();
-              String sql = "DROP DATABASE library";
+          if(databaseName.equals("library")) { //system.out.print("yes");
+              Statement stmt = connection.createStatement(); //удаляет БД, если она уже существует
+              String sql = "drop database library";
               stmt.executeUpdate(sql);
           }
         }
+        
 Statement stmt = connection.createStatement();
            
           String sql = "create database library"; 

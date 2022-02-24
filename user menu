@@ -48,11 +48,11 @@ public static void user_menu(String UID) {
                 stmt=connection.createStatement(); //использование БД
                 ArrayList books_list = new ArrayList(); //хранение в массиве
                 ResultSet rs=stmt.executeQuery(sql);
-                JTable book_list= new JTable(); 
-                book_list.setModel(DbUtils.resultSetToTableModel(rs));
-                JScrollPane scrollPane = new JScrollPane(book_list);
-                f.add(scrollPane); 
-                f.setSize(800, 400); 
+                JTable book_list= new JTable(); //хранение данных в табличном формате
+                book_list.setModel(DbUtils.resultSetToTableModel(rs)); //включение полосы прокрутки
+                JScrollPane scrollPane = new JScrollPane(book_list); 
+                f.add(scrollPane); //добавление полосу прокрутки
+                f.setSize(800, 400); //установка размеров рамки для моих книг
                 f.setVisible(true);
                 f.setLocationRelativeTo(null);
             } catch (SQLException e1) { 
@@ -63,10 +63,10 @@ public static void user_menu(String UID) {
     }
     );
      
-    f.add(my_book); 
-    f.add(view_but); 
-    f.setSize(300,100);
-    f.setLayout(null);  
-    f.setVisible(true);
+    f.add(my_book); //добавление моих книг
+    f.add(view_but); //добавить просмотренные книги
+    f.setSize(300,100); //ширина 300 и высота 100
+    f.setLayout(null);  //использование no layout
+    f.setVisible(true); //делает рамку видимой
     f.setLocationRelativeTo(null);
     }

@@ -1,8 +1,8 @@
 public static Connection connect()
 {
 try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/mysql?user=root&password=edureka");
+        Class.forName("com.mysql.cj.jdbc.Driver"); //system.out.println("Loaded driver");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost/mysql?user=root&password=edureka"); //system.out.println("Connected to MySQL");
         return con;
  } 
  catch (Exception ex) {

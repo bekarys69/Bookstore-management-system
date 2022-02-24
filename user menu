@@ -1,29 +1,29 @@
 public static void user_menu(String UID) {
      
-    JFrame f=new JFrame("User Functions"); 
-    JButton view_but=new JButton("View Books");
-    view_but.setBounds(20,20,120,25);//x axis, y axis, width, height 
+    JFrame f=new JFrame("User Functions"); //присваивание окна в качестве пользовательских функций
+    JButton view_but=new JButton("View Books"); //создание экземпляра JButton
+    view_but.setBounds(20,20,120,25);//ось x, ось y, ширина, высота 
     view_but.addActionListener(new ActionListener() { 
         public void actionPerformed(ActionEvent e){
              
-            JFrame f = new JFrame("Books Available"); 
+            JFrame f = new JFrame("Books Available"); //просмотр книг хранящихся в БД
             Connection connection = connect();
-            String sql="select * from BOOKS"; 
+            String sql="select * from BOOKS"; //извлечение данных из БД
             try {
-                Statement stmt = connection.createStatement();
-                 stmt.executeUpdate("USE LIBRARY"); 
+                Statement stmt = connection.createStatement(); //подключение к БД
+                 stmt.executeUpdate("use library"); //использование библиотеки
                 stmt=connection.createStatement();
                 ResultSet rs=stmt.executeQuery(sql);
-                JTable book_list= new JTable(); 
+                JTable book_list= new JTable(); //отображание данных в табличном формате
                 book_list.setModel(DbUtils.resultSetToTableModel(rs)); 
                   
-                JScrollPane scrollPane = new JScrollPane(book_list);
+                JScrollPane scrollPane = new JScrollPane(book_list); //включение полосы прокрутки
  
-                f.add(scrollPane);
-                f.setSize(800, 400); 
+                f.add(scrollPane); //добавление полосу прокрутки
+                f.setSize(800, 400); //установка размеров рамки для просмотра книг
                 f.setVisible(true);
                 f.setLocationRelativeTo(null);
-            } catch (SQLException e1) {
+            } catch (SQLException e1) { 
                  JOptionPane.showMessageDialog(null, e1);
             }               
              

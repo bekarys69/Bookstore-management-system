@@ -164,3 +164,18 @@ public static void admin_menu() {
                      
                 });
      
+      g.add(create_but);
+                    g.add(a2);
+                    g.add(a1);
+                    g.add(l1);
+                    g.add(l2);
+                    g.add(F_user);
+                    g.add(F_pass);
+                    g.setSize(350,200);  
+                    g.setLayout(null);
+                    g.setVisible(true);
+                    g.setLocationRelativeTo(null);
+                 
+                 
+    }
+    });

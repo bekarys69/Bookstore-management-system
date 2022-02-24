@@ -10,3 +10,21 @@ public static void create() {
               stmt.executeUpdate(sql);
           }
         }
+Statement stmt = connection.createStatement();
+           
+          String sql = "create database library"; 
+          stmt.executeUpdate(sql); 
+          stmt.executeUpdate("use library"); 
+          String sql1 = "create table users(uid int not null auto_increment primary key, username varchar(25), password varchar(25), admin boolean)";
+          stmt.executeUpdate(sql1);
+          stmt.executeUpdate("insert into users(username, password, admin) values('admin','admin',true)");
+          stmt.executeUpdate("create table books(bid int not null auto_increment primary key, bname varchar(50), genre varchar(25), price int)");
+          stmt.executeUpdate("create table issued(iid int not null auto_increment primary key, uid int, bid int, issued_date varchar(25), return_date varchar(25), period int, fine int)");
+          stmt.executeUpdate("insert into books(bname, genre, price) values ('1984', 'anti-utopia', 1500),  ('murder on the orient express', 'detective', 2000), ('i am zlatan','biography', 2500), ('the stranger in the woods', 'biography', 2000), ('a farewell to arms','fiction', 1000)");
+           
+    resultSet.close();
+    }
+     catch (Exception ex) {
+         ex.printStackTrace();
+}
+}

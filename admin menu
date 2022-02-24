@@ -396,3 +396,63 @@ JButton add_book=new JButton("Add Book");
                      
                      stmt.executeUpdate("update issued set return_date='"+return_date+"' where iid="+iid); 
                      g.dispose();
+                     
+                     
+                     Connection connection1 = connect();
+                     Statement stmt1 = connection1.createStatement();
+                     stmt1.executeUpdate("use library");                
+                    ResultSet rs1 = stmt1.executeQuery("select period from issued where iid="+iid); 
+                    String diff=null; 
+                    while (rs1.next()) {
+                         diff = rs1.getString(1);
+                          
+                       }
+                    int diff_int = Integer.parseInt(diff);
+                    if(ex.days&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;diff_int) { 
+                         
+                        int fine = (ex.days-diff_int)*100; 
+                        stmt1.executeUpdate("update issued set fine="+fine+" where iid="+iid);  
+                        String fine_str = ("Fine: Tg. "+fine);
+                        JOptionPane.showMessageDialog(null,fine_str);
+                         
+                    }
+ 
+                     JOptionPane.showMessageDialog(null,"Book Returned!");
+                      
+                    }
+                             
+                     
+                    catch (SQLException e1) {
+                         JOptionPane.showMessageDialog(null, e1);
+                    }   
+                     
+                    }
+                     
+                }); 
+                    g.add(l4);
+                    g.add(create_but);
+                    g.add(l1);
+                    g.add(F_iid);
+                    g.add(F_return);
+                    g.setSize(350,250);
+                    g.setLayout(null);
+                    g.setVisible(true);
+                    g.setLocationRelativeTo(null);              
+    }
+    });
+     
+    f.add(create_but);
+    f.add(return_book);
+    f.add(issue_book);
+    f.add(add_book);
+    f.add(issued_but);
+    f.add(users_but);
+    f.add(view_but);
+    f.add(add_user);
+    f.setSize(600,200);  
+    f.setLayout(null);
+    f.setVisible(true);
+    f.setLocationRelativeTo(null);
+     
+    }
+}
